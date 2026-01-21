@@ -1,6 +1,5 @@
 import React, {createContext, useState} from "react";
-import {useNavigate, Link} from 'react-router-dom';
-import Profile from "../pages/Profile";
+import {useNavigate} from 'react-router-dom';
 
 export const AuthContext = createContext({});
 
