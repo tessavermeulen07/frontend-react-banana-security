@@ -6,8 +6,8 @@ import {AuthContext} from "../context/AuthContext";
 function NavBar() {
     const navigate = useNavigate();
 
-    const isAuth = useContext(AuthContext);
-    console.log(isAuth);
+    const {isAuth} = useContext(AuthContext);
+    console.log({isAuth});
 
 
     return (
@@ -23,32 +23,37 @@ function NavBar() {
 
 
             <div>
-                {isAuth ?
-                    <button
-                        type="button"
-                        onClick={() => navigate('/signin')}
-                    >
-                        Log in
-                    </button> &&
-                    <button
-                        type="button"
-                        onClick={() => navigate('/signup')}
-                    >
-                        Registreren
-                    </button>
-                    :
-                    <button
+                {
+                    !isAuth ?
+                    <>
+                <button
+                    type="button"
+                    onClick={() => navigate('/signin')}
+                >
+                    Log in
+                </button>
+
+                <button
+                    type="button"
+                    onClick={() => navigate('/signup')}
+                >
+                    Registreren
+                </button>
+                </> :
+                <button
                     type="button"
                     onClick={() => navigate('/')}
-            >
-                Uitloggen
-            </button>
-            }
-        </div>
+                >
+                    Uitloggen
+                </button>
 
-</nav>
-)
-    ;
+            }
+            </div>
+
+
+        </nav>
+    )
+        ;
 }
 
 export default NavBar;
