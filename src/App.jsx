@@ -18,7 +18,7 @@ console.log(isAuth, login);
       <div className="content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/profile" element={isAuth === true ? <Profile /> : <Navigate to="/" />} />
+          <Route path="/profile" element={isAuth.isAuth ? <Profile /> : <Navigate to="/" />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>

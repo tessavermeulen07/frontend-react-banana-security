@@ -24,7 +24,7 @@ function NavBar() {
 
             <div>
                 {
-                    !isAuth ?
+                    !isAuth.isAuth ?
                     <>
                 <button
                     type="button"

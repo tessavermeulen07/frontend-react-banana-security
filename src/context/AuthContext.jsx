@@ -4,14 +4,18 @@ import {useNavigate} from 'react-router-dom';
 export const AuthContext = createContext({});
 
 function AuthContextProvider({children}) {
-    const [isAuth, toggleIsAuth] = useState(false);
+    const [isAuth, toggleIsAuth] = useState(
+        {
+            isAuth: false,
+            user: ''
+        });
     const navigate = useNavigate();
 
 // Zet de state op true;
 // Logt 'Gebruiker is ingelogd!' in de console
 // Stuurt de gebruiker door naar de profielpagina
 function login() {
-        toggleIsAuth(true);
+        toggleIsAuth({isAuth: true, user: ''});
         console.log('Gebruiker is ingelogd!');
         navigate('/profile');
     }
@@ -20,7 +24,7 @@ function login() {
 // Logt 'Gebruiker is uitgelogd!' in de console
 // Stuurt de gebruiker door naar de homepagina
 function logout() {
-    toggleIsAuth(false);
+    toggleIsAuth({isAuth: false, user: ''});
     console.log('Gebruiker is uitgelogd!');
     navigate('/');
     }
@@ -29,12 +33,6 @@ function logout() {
         isAuth: isAuth,
         login: login,
         logout:  logout
-    }
-
-    if (isAuth) {
-        console.log('test 1');
-    } else {
-        console.log('test 2');
     }
 
     return (
