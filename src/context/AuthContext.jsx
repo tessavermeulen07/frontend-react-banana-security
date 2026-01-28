@@ -7,7 +7,7 @@ function AuthContextProvider({children}) {
     const [isAuth, toggleIsAuth] = useState(
         {
             isAuth: false,
-            user: ''
+            user: null
         });
     const navigate = useNavigate();
 
