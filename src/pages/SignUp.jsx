@@ -16,7 +16,9 @@ function SignUp() {
 
         try {
             const post = await axios.post('https://novi-backend-api-wgsgz.ondigitalocean.app/api/users', {
-                "email": `${emailValue}`, "password": `${passwordValue}`, "username": `${usernameValue}`, "roles": [''],
+                "email": `${emailValue}`,
+                "password": `${passwordValue}`,
+                "username": `${usernameValue}`, "roles": [''],
             }, {
                 headers: {
                     'novi-education-project-id': '268aff3c-ae58-411a-a55f-e0c1ec05146d'
