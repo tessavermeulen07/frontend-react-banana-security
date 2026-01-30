@@ -1,7 +1,7 @@
 import React, {createContext, useState} from "react";
 import {useNavigate} from 'react-router-dom';
 import {jwtDecode} from "jwt-decode";
-import axios, {isAxiosError} from "axios";
+import axios from "axios";
 
 export const AuthContext = createContext({});
 
@@ -9,7 +9,8 @@ function AuthContextProvider({children}) {
     const [isAuth, toggleIsAuth] = useState(
         {
             isAuth: false,
-            user: null
+            user: null,
+            status: 'pending'
         });
     const navigate = useNavigate();
 
@@ -18,6 +19,7 @@ function AuthContextProvider({children}) {
 // Zet de state op true;
 // Logt 'Gebruiker is ingelogd!' in de console
 // Stuurt de gebruiker door naar de profielpagina
+
 function login(token) {
         toggleIsAuth({isAuth: true, user: ''});
         console.log('Gebruiker is ingelogd!');
@@ -34,7 +36,7 @@ function login(token) {
         console.log(token, id);
         try {
             const response = await axios.get(`https://novi-backend-api-wgsgz.ondigitalocean.app/api/users/${id}`, {
-                header: {
+                headers: {
                     'Content-Type': 'application/json',
                     'novi-education-project-id': '268aff3c-ae58-411a-a55f-e0c1ec05146d'
                 }
@@ -50,7 +52,12 @@ function login(token) {
 // Logt 'Gebruiker is uitgelogd!' in de console
 // Stuurt de gebruiker door naar de homepagina
 function logout() {
-    toggleIsAuth({isAuth: false, user: ''});
+    localStorage.removeItem('JWT');
+    toggleIsAuth({
+        isAuth: false,
+        user: null,
+        status: 'done'
+    });
     console.log('Gebruiker is uitgelogd!');
     navigate('/');
     }
