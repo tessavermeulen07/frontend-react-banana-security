@@ -10,7 +10,7 @@ function SignIn() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        console.log(emailValue, passwordValue);
+        // console.log(emailValue, passwordValue);
         try {
             const response = await axios.post('https://novi-backend-api-wgsgz.ondigitalocean.app/api/login', {
                 email: emailValue,
@@ -21,7 +21,7 @@ function SignIn() {
                 'novi-education-project-id': '268aff3c-ae58-411a-a55f-e0c1ec05146d'
             }
         })
-            console.log(response);
+            // console.log(response);
             login(response.data.token);
         } catch (error) {
             console.error(e);

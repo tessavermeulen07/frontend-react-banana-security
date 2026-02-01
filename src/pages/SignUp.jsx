@@ -7,7 +7,7 @@ function SignUp() {
     const [passwordValue, setPasswordValue] = useState('');
     const [usernameValue, setUsernameValue] = useState('');
     const [error, setError] = useState('');
-    const [newUserid, setNewUserId] = useState(null);
+    const [newUserId, setNewUserId] = useState(null);
     const [succes, setSucces] = useState(false);
 
 

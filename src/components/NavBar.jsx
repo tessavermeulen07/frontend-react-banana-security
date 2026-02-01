@@ -6,7 +6,7 @@ import {AuthContext} from "../context/AuthContext";
 function NavBar() {
     const navigate = useNavigate();
     const {isAuth, logout} = useContext(AuthContext);
-    console.log({isAuth});
+    // console.log({isAuth});
 
 
 
