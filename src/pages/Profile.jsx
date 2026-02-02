@@ -1,17 +1,21 @@
 import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
-import authContext, {AuthContext} from "../context/AuthContext";
+import {AuthContext} from "../context/AuthContext";
 
 
 function Profile() {
-    const {login} = useContext(AuthContext);
+    // const {user} = useContext(AuthContext);
+
+    // if (!user) {
+    //     return <p>Profielgegevens laden...</p>;
+    // }
 
     return (
     <>
       <h1>Profielpagina</h1>
       <section>
         <h2>Gegevens</h2>
-        <p><strong>Gebruikersnaam:</strong> hard-coded</p>
+        <p><strong>Gebruikersnaam:</strong>  </p>
         <p><strong>Email:</strong> </p>
       </section>
       <section>

@@ -14,6 +14,8 @@ function AuthContextProvider({children}) {
             status: 'pending'
         });
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const token = localStorage.getItem('JWT');
         if (token) {
@@ -26,18 +28,23 @@ function AuthContextProvider({children}) {
                             email: tokenId.email,
                             roles: tokenId.role,
                         },
-                    })
+                    });
             } else {
                     toggleIsAuth({
-                        ...isAuth,
+                        isAuth: false,
                         status: 'done',
-                    })
+                        user: null,
+                    });
                 }
-        }
+            } else toggleIsAuth({
+            isAuth: false,
+            status: 'done',
+            user: null,
+        });
     }, []);
 
 
-    const navigate = useNavigate();
+
 
     async function getProfile(id) {
         const token = localStorage.getItem('JWT');
@@ -65,16 +72,21 @@ function AuthContextProvider({children}) {
         toggleIsAuth({
             isAuth: true,
             status: 'done',
-            user: ''
-            // user: {
-            //     email: token.user.email,
-            //     roles: token.user.role
-            // }
+            user: {
+                email: token.user.email,
+                roles: token.user.role
+            }
         });
-        navigate('/profile');
+
+        useEffect( () => {
+            if (isAuth) {
+                navigate('/profile');
+            }
+        }, [isAuth]);
 
 
-        const tokenId = jwtDecode(token);
+
+        // const tokenId = jwtDecode(token);
         // console.log(tokenId.userId);
         getProfile(tokenId.userId);
     }
@@ -101,8 +113,8 @@ function logout() {
 
     return (
         <AuthContext.Provider value={data}>
-            {children}
-            {/*{isAuth.status === 'done' ? children : <p>Loading...</p>}*/}
+            {/*{children}*/}
+            {isAuth.status === 'done' ? children : <p>Loading...</p>}
             {/*Ik krijg nu alleen loading te zien. Wat gaat er mis?*/}
         </AuthContext.Provider>
     )

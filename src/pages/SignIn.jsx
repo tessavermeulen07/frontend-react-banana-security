@@ -20,7 +20,7 @@ function SignIn() {
             headers: {
                 'novi-education-project-id': '268aff3c-ae58-411a-a55f-e0c1ec05146d'
             }
-        })
+        });
             // console.log(response);
             login(response.data.token);
         } catch (error) {

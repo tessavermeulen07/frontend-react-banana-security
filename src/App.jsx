@@ -9,7 +9,7 @@ import './App.css';
 import {AuthContext} from "./context/AuthContext";
 
 function App() {
-    const {isAuth, login} = useContext(AuthContext);
+    const {isAuth} = useContext(AuthContext);
 // console.log(isAuth, login);
 
     return (
