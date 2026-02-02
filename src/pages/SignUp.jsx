@@ -25,7 +25,6 @@ function SignUp() {
                     'novi-education-project-id': '268aff3c-ae58-411a-a55f-e0c1ec05146d'
                 }
             })
-            console.log(post)
             setNewUserId(post.data.id);
             setSucces(true);
         } catch (error) {
@@ -89,8 +88,7 @@ function SignUp() {
             )
         }
 </>
-)
-;
+);
 }
 
 export default SignUp;

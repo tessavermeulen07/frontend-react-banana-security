@@ -5,14 +5,14 @@ import axios from "axios";
 
 
 function SignIn() {
-    const {login, isAuth} = useContext(AuthContext);
+    const {login} = useContext(AuthContext);
     const [emailValue, setEmailValue] = useState('');
     const [passwordValue, setPasswordValue] = useState('');
 
 
     async function handleSubmit(e) {
         e.preventDefault();
-        // console.log(emailValue, passwordValue);
+
         try {
             const response = await axios.post('https://novi-backend-api-wgsgz.ondigitalocean.app/api/login', {
                 email: emailValue,
@@ -23,7 +23,7 @@ function SignIn() {
                 'novi-education-project-id': '268aff3c-ae58-411a-a55f-e0c1ec05146d'
             }
         });
-            // console.log(response);
+
             login(response.data);
         } catch (error) {
             console.error(e);

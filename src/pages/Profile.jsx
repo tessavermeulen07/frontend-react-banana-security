@@ -7,7 +7,7 @@ import axios from "axios";
 
 function Profile() {
 
-  const {user, isAuth} = useContext(AuthContext);
+  const {user} = useContext(AuthContext);
   const [privateContent, setPrivateContent] = useState(null);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ function Profile() {
            'novi-education-project-id': '268aff3c-ae58-411a-a55f-e0c1ec05146d'
          }
        });
-       console.log(response);
+
        setPrivateContent(response.data);
      } catch (e) {
        console.error ('Fout bij het ophalen van private content', e);
