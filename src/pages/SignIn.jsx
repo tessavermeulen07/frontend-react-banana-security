@@ -1,12 +1,14 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {AuthContext} from "../context/AuthContext";
 import axios from "axios";
 
+
 function SignIn() {
-    const {login} = useContext(AuthContext);
+    const {login, isAuth} = useContext(AuthContext);
     const [emailValue, setEmailValue] = useState('');
     const [passwordValue, setPasswordValue] = useState('');
+
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -22,7 +24,7 @@ function SignIn() {
             }
         });
             // console.log(response);
-            login(response.data.token);
+            login(response.data);
         } catch (error) {
             console.error(e);
         }
