@@ -52,6 +52,7 @@ function AuthContextProvider({children}) {
             const response = await axios.get(`https://novi-backend-api-wgsgz.ondigitalocean.app/api/users/${id}`, {
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                     'novi-education-project-id': '268aff3c-ae58-411a-a55f-e0c1ec05146d'
                 }
             })
@@ -90,6 +91,7 @@ function AuthContextProvider({children}) {
     const data = {
         isAuth: isAuth,
         user: isAuth.user,
+        status: isAuth.status,
         login: login,
         logout:  logout
     }

@@ -1,35 +1,12 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
 import {AuthContext} from "../context/AuthContext";
-import axios from "axios";
 
 
 
 function Profile() {
 
-  const {user} = useContext(AuthContext);
-  const [privateContent, setPrivateContent] = useState(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem('JWT');
-
-    async function fetchPrivateContent(){
-     try {
-       const response = await axios.get(`https://novi-backend-api-wgsgz.ondigitalocean.app/api/secrets`, {
-         headers: {
-           'novi-education-project-id': '268aff3c-ae58-411a-a55f-e0c1ec05146d'
-         }
-       });
-
-       setPrivateContent(response.data);
-     } catch (e) {
-       console.error ('Fout bij het ophalen van private content', e);
-     }
-    }
-    if (token) {
-      void fetchPrivateContent();
-    }
-  }, []);
+  const {user, isAuth} = useContext(AuthContext);
 
     return (
     <>
@@ -37,16 +14,12 @@ function Profile() {
       <section>
         <h2>Gegevens</h2>
         <p><strong>Gebruikersnaam:</strong> user.username - deze kan ik niet ophalen, staat niet in de swagger genoteerd.</p>
-        <p><strong>Email:</strong> {user.email} </p>
+        <p><strong>Email:</strong> {user?.email} </p>
       </section>
-      {privateContent ? (
-          <section>
-            <h2>Afgeschermde content voor ingelogde gebruikers</h2>
-            <p>{privateContent}</p>
-          </section>
-      ) : (
-          <p>Private content kan niet geladen worden.</p>
-      )}
+      <section>
+        <h2>Strikt geheime profiel-content</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias cum debitis dolor dolore fuga id molestias qui quo unde?</p>
+      </section>
       <p>Terug naar de <Link to="/">Homepagina</Link></p>
     </>
   );
