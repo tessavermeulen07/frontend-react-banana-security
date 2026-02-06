@@ -19,7 +19,8 @@ function SignUp() {
                 "email": `${emailValue}`,
                 "password": `${passwordValue}`,
                 "username": `${usernameValue}`,
-                "roles": [''],
+                "roles": ['anonymous',
+                'user'],
             }, {
                 headers: {
                     'novi-education-project-id': '268aff3c-ae58-411a-a55f-e0c1ec05146d'
