@@ -49,12 +49,11 @@ function AuthContextProvider({children}) {
                     'novi-education-project-id': '268aff3c-ae58-411a-a55f-e0c1ec05146d'
                 }
             });
-            console.log('Profiel opgehaald');
-            console.log(isAuth);
+
             toggleIsAuth({
                 isAuth: true,
                 status: 'done',
-                user: response.data.user
+                user: response.data
                 // user: {
                 //     email: response.data.email,
                 //     roles: response.data.role,
@@ -74,12 +73,8 @@ function AuthContextProvider({children}) {
             status: 'done',
             user: token.user
         });
-        console.log('ingelogd');
-        console.log(isAuth);
        navigate('/profile');
     }
-
-    console.log(isAuth);
 
     function logout() {
         localStorage.removeItem('JWT');
@@ -88,8 +83,7 @@ function AuthContextProvider({children}) {
             user: null,
             status: 'done'
         });
-        console.log('uitgelogd');
-        console.log(isAuth);
+
         navigate('/');
     }
 
